@@ -13,6 +13,9 @@ Frame = NewType('frame', pd.DataFrame)
 
 
 class EulerMethod(DEMethod.DESolveMethod):
+    def __init__(self):
+        pass
+
     @staticmethod
     def n_iterations(segment: List[float], step: AlgStep) -> int:
         return int((segment[1] - segment[0]) / step)
