@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+'''
+Author: Gershon Shamailov
+'''
+
 import sys
 sys.path.append(".")
 
@@ -5,12 +11,12 @@ from typing import Callable, Tuple, List, NewType
 import pandas as pd
 import matplotlib.pyplot as plt
 import math
-import DEMethod
+from . import DEMethod
 
 Float = NewType('step', float)
 Frame = NewType('frame', pd.DataFrame)
 
-class AdamsMethodIII(DEMethod.DESolveMethod):
+class AdamsMethodII(DEMethod.DESolveMethod):
     def __init__(self):
         pass
 
@@ -56,10 +62,6 @@ class AdamsMethodIII(DEMethod.DESolveMethod):
         y_1 = self.runge_kutta(f, x_0, y_0, step)
         self.add_new_entry(1, table, f, x_1, y_1)
 
-        x_2 = x_1 + step
-        y_2 = self.runge_kutta(f, x_1, y_1, step)
-        self.add_new_entry(2, table, f, x_2, y_2)
-
     @DEMethod.support_lambda
     def solve(self, f: Callable[[float, float], float],
               initial_dot: Tuple[float, float],
@@ -72,9 +74,9 @@ class AdamsMethodIII(DEMethod.DESolveMethod):
         table = []
         self.precount(table, f, initial_dot, step)
 
-        for i in range(3, self.n_iterations(segment, step) + 1):
+        for i in range(2, self.n_iterations(segment, step) + 1):
             x_new = table[i - 1]['x'] + step
-            y_new = table[i - 1]['y'] + step * (23/12 * table[i - 1]['func'] - 16/12 * table[i - 2]['func'] + 5/12 * table[i - 3]['func'])
+            y_new = table[i - 1]['y'] + step * (3/2 * table[i - 1]['func'] - 1/2 * table[i - 2]['func'])
             self.add_new_entry(i, table, f, x_new, y_new)
 
         df = pd.DataFrame(table)

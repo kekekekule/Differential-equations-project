@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 '''
 Author: Artem Streltsov
 '''
@@ -9,13 +11,13 @@ from typing import Callable, Tuple, List, NewType
 import pandas as pd
 import matplotlib.pyplot as plt
 import math
-import DEMethod
+from . import DEMethod
 
 
 Float = NewType('step', float)
 Frame = NewType('frame', pd.DataFrame)
 
-class IRK2Method(DEMethod.DESolveMethod):
+class EulerMethod(DEMethod.DESolveMethod):
     def __init__(self):
         pass
 
@@ -24,15 +26,11 @@ class IRK2Method(DEMethod.DESolveMethod):
         return int((segment[1] - segment[0]) / step)
 
     @staticmethod
-    def update_y(f: Callable[[float, float], float],
+    def delta_y(f: Callable[[float, float], float],
                 x: Float,
                 y: Float,
                 step: Float) -> int:
-
-        temporary = y + step * f(x, y)
-        y_new = y + step * (f(x, y) + f(x + step, temporary)) / 2
-
-        return y_new
+        return step * f(x + step / 2, y + step / 2 * f(x, y))
 
     @DEMethod.support_lambda
     def solve(self, f: Callable[[float, float], float],
@@ -57,7 +55,7 @@ class IRK2Method(DEMethod.DESolveMethod):
         for i in range(1, self.n_iterations(segment, step) + 1):
             x_last, y_last = table[i - 1]['x'], table[i - 1]['y']
             x_new = x_last + step
-            y_new = self.update_y(f, x_last, y_last, step)
+            y_new = y_last + self.delta_y(f, x_last, y_last, step)
             table.append(
                 {
                     'i': i,

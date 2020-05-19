@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+'''
+Author: Artem Streltsov
+'''
+
 import sys
 sys.path.append(".")
 
@@ -5,7 +11,7 @@ from typing import Callable, Tuple, List, NewType
 import pandas as pd
 import matplotlib.pyplot as plt
 import math
-import DEMethod
+from . import DEMethod
 
 
 Float = NewType('step', float)
