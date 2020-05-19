@@ -32,6 +32,7 @@ class RK4Method(DEMethod.DESolveMethod):
 
         return (k1 + 2 * k2 + 2 * k3 + k4) * step / 6
 
+    @DEMethod.support_lambda
     def solve(self, f: Callable[[float, float], float],
               initial_dot: Tuple[float, float],
               segment: List[float],
