@@ -18,7 +18,8 @@ class AdamsMethodII(DEMethod.DESolveMethod):
     def n_iterations(segment: List[float], step: Float) -> int:
         return int((segment[1] - segment[0]) / step)
 
-    def add_new_entry(self, i, table,
+    @staticmethod
+    def add_new_entry(i, table,
                       f: Callable[[float, float], float],
                       x: Float,
                       y: Float):
@@ -32,7 +33,8 @@ class AdamsMethodII(DEMethod.DESolveMethod):
             }
         )
 
-    def runge_kutta(self, f: Callable[[float, float], float],
+    @staticmethod
+    def runge_kutta(f: Callable[[float, float], float],
                     x: Float,
                     y: Float,
                     step: Float) -> Float:
@@ -54,6 +56,7 @@ class AdamsMethodII(DEMethod.DESolveMethod):
         y_1 = self.runge_kutta(f, x_0, y_0, step)
         self.add_new_entry(1, table, f, x_1, y_1)
 
+    @DEMethod.support_lambda
     def solve(self, f: Callable[[float, float], float],
               initial_dot: Tuple[float, float],
               segment: List[float],

@@ -30,6 +30,7 @@ class IRK2Method(DEMethod.DESolveMethod):
 
         return y_new
 
+    @DEMethod.support_lambda
     def solve(self, f: Callable[[float, float], float],
               initial_dot: Tuple[float, float],
               segment: List[float],

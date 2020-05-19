@@ -6,6 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import math
 import DEMethod
+import sympy as sy
 
 
 AlgStep = NewType('step', float)
@@ -20,6 +21,7 @@ class EulerMethod(DEMethod.DESolveMethod):
     def n_iterations(segment: List[float], step: AlgStep) -> int:
         return int((segment[1] - segment[0]) / step)
 
+    @DEMethod.support_lambda
     def solve(self, f: Callable[[float, float], float],
               initial_dot: Tuple[float, float],
               segment: List[float],
@@ -60,7 +62,10 @@ class EulerMethod(DEMethod.DESolveMethod):
 
 
 a = EulerMethod()
-result = a.solve(lambda x, y: 100 * (y - math.cos(x)), (0, 1), [0, 1], 0.1)
+x = sy.Symbol('x')
+y = sy.Symbol('y')
+p = x ** 2 - 2 * y
+result = a.solve(p, (0, 1), [0, 1], 0.1)
 x_axis, y_axis = result['x'], result['y']
 fig = plt.figure()
 
@@ -70,3 +75,4 @@ fig = plt.figure()
 got_euler, = plt.plot(x_axis, y_axis, color = 'black', linewidth = 2, label='Euler')
 # plt.legend(handles=[should_be, got_euler])
 plt.show()
+

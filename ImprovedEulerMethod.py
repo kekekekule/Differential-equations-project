@@ -26,6 +26,7 @@ class EulerMethod(DEMethod.DESolveMethod):
                 step: Float) -> int:
         return step * f(x + step / 2, y + step / 2 * f(x, y))
 
+    @DEMethod.support_lambda
     def solve(self, f: Callable[[float, float], float],
               initial_dot: Tuple[float, float],
               segment: List[float],
