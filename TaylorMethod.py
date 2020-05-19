@@ -1,3 +1,26 @@
+import sys
+sys.path.append(".")
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+import sympy as sy
+from fractions import Fraction as frac
+sy.init_printing()
+
+
+from typing import Callable, Tuple, List, NewType
+import pandas as pd
+import matplotlib.pyplot as plt
+import math
+import DEMethod
+
+
+AlgStep = NewType('step', float)
+Frame = NewType('frame', pd.DataFrame)
+
+
+
 class TaylorMethod(DEMethod.DESolveMethod):
     def __init__(self):
         pass
@@ -37,6 +60,7 @@ class TaylorMethod(DEMethod.DESolveMethod):
     
     def find_derivative_dy(self, function):
         x = sy.Symbol('x')
+        y = sy.Symbol('y')
         return sy.diff(function, y)
     
     
@@ -45,7 +69,7 @@ class TaylorMethod(DEMethod.DESolveMethod):
         x_0 = in_dot[0]
         y_0 = in_dot[1]
         x = sy.Symbol('x')
-        y = sy.Symbol('y')
+        y = sy.Function('y')
         i_result = y_0
         i_step = f
         der_subs_list = [i_result]
@@ -118,4 +142,15 @@ class TaylorMethod(DEMethod.DESolveMethod):
         return df
         
     def __str__(self):
-        return 'method of solving differential equations.'
+        return 'Taylor method of solving differential equations.'
+
+
+
+a = TaylorMethod()
+x = sy.Symbol('x')
+y = sy.Function('y')
+result = a.solve(3 * x**2, (0, 1), 10, 100, 0.2)
+x_axis, y_axis = result['x'], result['y']
+fig = plt.figure()
+got_euler, = plt.plot(x_axis, y_axis, color = 'black', linewidth = 2, label='Euler')
+plt.show()
