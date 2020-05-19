@@ -117,7 +117,7 @@ class TaylorMethod(DEMethod.DESolveMethod):
         der_list = self.generate_list_of_trees_of_derivatives(count)
         sub_list = self.calculate_main_derivative(count, f, initial_dot, der_list)
         if (epsilon <= 0):
-            raise ValueError("Epsilon must greater than 0")
+            raise ValueError("Epsilon must be greater than 0")
         number = self.n_iterations([0, offset], epsilon) + 1
         my_array = [0 for i in range(number)]
         func_array = [0 for i in range(number)]
@@ -145,14 +145,3 @@ class TaylorMethod(DEMethod.DESolveMethod):
 
     def __str__(self):
         return 'Taylor method of solving differential equations.'
-
-
-
-a = TaylorMethod()
-x = sy.Symbol('x')
-y = sy.Function('y')
-result = a.solve(3 * x**2, (0, 1), 10, 100, 0.2)
-x_axis, y_axis = result['x'], result['y']
-fig = plt.figure()
-got_euler, = plt.plot(x_axis, y_axis, color = 'black', linewidth = 2, label='Euler')
-plt.show()

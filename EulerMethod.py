@@ -1,3 +1,7 @@
+'''
+Author: Artem Streltsov
+'''
+
 import sys
 sys.path.append(".")
 
@@ -59,20 +63,3 @@ class EulerMethod(DEMethod.DESolveMethod):
 
     def __str__(self):
         return 'Euler method of solving differential equations.'
-
-
-a = EulerMethod()
-x = sy.Symbol('x')
-y = sy.Symbol('y')
-p = x ** 2 - 2 * y
-result = a.solve(p, (0, 1), [0, 1], 0.1)
-x_axis, y_axis = result['x'], result['y']
-fig = plt.figure()
-
-# g = lambda x: 3/4 * math.e ** (-2 * x) + 1/2 * x ** 2 - 1/2 * x + 1/4
-# true_func = [g(x) for x in x_axis]
-# should_be, = plt.plot(x_axis, true_func, color = 'red', linewidth = 2, label='true')
-got_euler, = plt.plot(x_axis, y_axis, color = 'black', linewidth = 2, label='Euler')
-# plt.legend(handles=[should_be, got_euler])
-plt.show()
-
