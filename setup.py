@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='hse_de_project',
-    version='0.0.5',
+    version='0.0.6',
     description='HSE AMI Differential Equations Project',
     license='MIT',
     packages=['hse_de_project'],
