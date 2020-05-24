@@ -17,7 +17,7 @@ from . import DEMethod
 Float = NewType('step', float)
 Frame = NewType('frame', pd.DataFrame)
 
-class EulerMethod(DEMethod.DESolveMethod):
+class ImprovedEulerMethod(DEMethod.DESolveMethod):
     def __init__(self):
         pass
 
