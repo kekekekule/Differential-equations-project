@@ -122,10 +122,10 @@ class TaylorMethod(DEMethod.DESolveMethod):
               offset: float,
               count: Int, epsilon : AlgStep) -> None:
 
-        f = self.convert(f)
-
         if not isinstance(f, tuple(sy.core.all_classes)):
             raise Exception("Taylor Method supports only sympy objects as given functions")
+
+        f = self.convert(f)
 
         x_0 = initial_dot[0]
         y_0 = initial_dot[1]
