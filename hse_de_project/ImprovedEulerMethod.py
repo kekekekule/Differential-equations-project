@@ -69,4 +69,4 @@ class ImprovedEulerMethod(DEMethod.DESolveMethod):
         return df
 
     def __str__(self):
-        return 'Euler method of solving differential equations.'
+        return 'Improved Euler method of solving differential equations.'

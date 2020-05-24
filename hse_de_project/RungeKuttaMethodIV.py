@@ -75,4 +75,4 @@ class RK4Method(DEMethod.DESolveMethod):
         return df
 
     def __str__(self):
-        return 'Euler method of solving differential equations.'
+        return 'RK4 method of solving differential equations.'

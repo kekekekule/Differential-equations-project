@@ -354,7 +354,7 @@ class IRK2Method(DEMethod.DESolveMethod):
         return df
 
     def __str__(self):
-        return 'Euler method of solving differential equations.'
+        return 'IRK2 method of solving differential equations.'
 
 
 class ImprovedEulerMethod(DEMethod.DESolveMethod):
@@ -409,7 +409,7 @@ class ImprovedEulerMethod(DEMethod.DESolveMethod):
         return df
 
     def __str__(self):
-        return 'Euler method of solving differential equations.'
+        return 'Improved Euler method of solving differential equations.'
 
 
 class RK4Method(DEMethod.DESolveMethod):
@@ -470,7 +470,7 @@ class RK4Method(DEMethod.DESolveMethod):
         return df
 
     def __str__(self):
-        return 'Euler method of solving differential equations.'
+        return 'RK4 method of solving differential equations.'
 
 class TaylorMethod(DEMethod.DESolveMethod):
     def __init__(self):
