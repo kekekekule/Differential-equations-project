@@ -250,18 +250,6 @@ class AdamsMethodIV(DEMethod.DESolveMethod):
         return 'Adams-BashforthIV method of solving differential equations.'
 
 
-import sys
-sys.path.append(".")
-
-from typing import Callable, Tuple, List, NewType
-import pandas as pd
-import matplotlib.pyplot as plt
-import math
-from . import DEMethod
-
-Float = NewType('step', float)
-Frame = NewType('frame', pd.DataFrame)
-
 class AdamsPC(DEMethod.DESolveMethod):
     def __init__(self):
         pass
