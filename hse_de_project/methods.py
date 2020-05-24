@@ -250,12 +250,6 @@ class AdamsMethodIV(DEMethod.DESolveMethod):
         return 'Adams-BashforthIV method of solving differential equations.'
 
 
-#!/usr/bin/env python3
-
-'''
-Author: Gershon Shamailov
-'''
-
 import sys
 sys.path.append(".")
 
