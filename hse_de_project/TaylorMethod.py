@@ -109,11 +109,20 @@ class TaylorMethod(DEMethod.DESolveMethod):
             multiplier *= (x - x_0)
         return y
 
+    @staticmethod
+    def convert(func):
+        x = sy.Symbol('x')
+        y_symb = sy.Symbol('y')
+        y_func = sy.Function('y')(x)
+
+        return func.subs(y_symb, y_func)
 
     def solve(self, f,
               initial_dot: Tuple[float, float],
               offset: float,
               count: Int, epsilon : AlgStep) -> None:
+
+        f = self.convert(f)
 
         if not isinstance(f, tuple(sy.core.all_classes)):
             raise Exception("Taylor Method supports only sympy objects as given functions")
