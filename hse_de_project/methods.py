@@ -495,6 +495,8 @@ class TaylorMethod(DEMethod.DESolveMethod):
     @staticmethod
     def make_subs(i_step : Int, count : Int, sub_list, der_list,
     in_dot : Tuple[float, float]) -> int:
+        x = sy.Symbol('x')
+        y = sy.Function('y')
         x_0 = in_dot[0]
         y_0 = in_dot[1]
         result = i_step
@@ -557,7 +559,7 @@ class TaylorMethod(DEMethod.DESolveMethod):
     def convert(func):
         x = sy.Symbol('x')
         y_symb = sy.Symbol('y')
-        y_func = sy.Function('y')
+        y_func = sy.Function('y')(x)
 
         return func.subs(y_symb, y_func)
 
@@ -584,13 +586,6 @@ class TaylorMethod(DEMethod.DESolveMethod):
             my_array[j] = x_0 + j * epsilon
             func_array[j] = self.start_proccess(count, my_array[j], sub_list, initial_dot)
         table = []
-        table.append(
-            {
-                'i': 0,
-                'x': x_0,
-                'y': y_0,
-            }
-        )
         for i in range(number):
             table.append(
                 {

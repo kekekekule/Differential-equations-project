@@ -113,7 +113,7 @@ class TaylorMethod(DEMethod.DESolveMethod):
     def convert(func):
         x = sy.Symbol('x')
         y_symb = sy.Symbol('y')
-        y_func = sy.Function('y')
+        y_func = sy.Function('y')(x)
 
         return func.subs(y_symb, y_func)
 
