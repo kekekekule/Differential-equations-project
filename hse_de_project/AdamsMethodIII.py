@@ -87,4 +87,4 @@ class AdamsMethodIII(DEMethod.DESolveMethod):
         return df
 
     def __str__(self):
-        return 'Adams-Bashforth method of solving differential equations.'
+        return 'Adams-BashforthIII method of solving differential equations.'

@@ -91,4 +91,4 @@ class AdamsMethodIV(DEMethod.DESolveMethod):
         return df
 
     def __str__(self):
-        return 'Adams-Bashforth method of solving differential equations.'
+        return 'Adams-BashforthIV method of solving differential equations.'
