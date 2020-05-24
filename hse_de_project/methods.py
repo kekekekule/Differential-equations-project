@@ -569,7 +569,7 @@ class TaylorMethod(DEMethod.DESolveMethod):
         if not isinstance(f, tuple(sy.core.all_classes)):
             raise Exception("Taylor Method supports only sympy objects as given functions")
 
-        f = convert(f)
+        f = self.convert(f)
 
         x_0 = initial_dot[0]
         y_0 = initial_dot[1]
